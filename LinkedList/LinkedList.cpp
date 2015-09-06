@@ -7,7 +7,7 @@ int main() {
 	l->createNewNodeAtEnd(15);
 	l->createNewNodeAtEnd(25);
 	l->createNewNodeAtEnd(35);
-	l->insertNodeAt(2);
+	l->insertNodeAt(2, 7);
 	l->printList();
 	return 0;
 }
@@ -20,12 +20,13 @@ int main() {
 void LinkedList::insertNodeAt(int i, int x) {
 	if(i == 0) {
 		insertNodeAtBeginning(x);
+		return;
 	}
 	conductor = root;
 	node *temp = new node();
 	temp->x = x;
 	if (conductor != 0) {
-		while (conductor->next != 0 && i != 0) {
+		while (conductor->next != 0 && i > 1) {
 			i--;
 			//goto next item
 			conductor = conductor->next;
@@ -33,6 +34,13 @@ void LinkedList::insertNodeAt(int i, int x) {
 		temp->next = conductor->next;
 		conductor->next = temp;
 	}
+}
+
+void LinkedList::insertNodeAtBeginning(int x) {
+	node *temp = new node();
+	temp->x = x;
+	temp->next = root;
+	root = temp;
 }
 
 
@@ -44,6 +52,7 @@ void LinkedList::createNewNodeAtEnd(int i) {
 }
 
 void LinkedList::printList() {
+	conductor = root;
 	//looping function to the end
 	if (conductor != 0) {
 		while (conductor->next != 0) {

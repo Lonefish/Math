@@ -19,6 +19,7 @@ public:
 	node *end; //end of list
 	void createNewNodeAtEnd(int i);
 	void insertNodeAt(int i, int x);
+	void insertNodeAtBeginning(int x);
 	void printList();
 	LinkedList();
 	virtual ~LinkedList();
