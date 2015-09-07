@@ -1,16 +1,18 @@
 #include <iostream>
 #include "LinkedList.h"
+#include <string.h>
 
 
 int main() {
-	LinkedList *l = new LinkedList();
-	l->createNewNodeAtEnd(15);
-	l->createNewNodeAtEnd(25);
-	l->createNewNodeAtEnd(35);
-	l->insertNodeAt(2, 7);
+	std::string s = "123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456";
+	LinkedList *l = new LinkedList(s.at(0) - '0');
+	for(int i = 1; i < s.length(); i++) {
+		l->createNewNodeAtEnd(s.at(i) - '0');
+	}
 	l->printList();
 	return 0;
 }
+
 
 /*
  * Insert node at index 'i'.
@@ -66,12 +68,12 @@ void LinkedList::printList() {
 }
 
 
-LinkedList::LinkedList() {
+LinkedList::LinkedList(int x) {
 	// TODO Auto-generated constructor stub
 	root = new node; // Now root points to a node struct
 	root->next = 0;  // The node root points to has its next pointer
 					 //  set equal to a null pointer
-	root->x = 5;     // By using the -> operator, you can modify the node
+	root->x = x;     // By using the -> operator, you can modify the node
 					 //  a pointer (root in this case) points to.
 
 	conductor = root;

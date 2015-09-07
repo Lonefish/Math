@@ -21,7 +21,7 @@ public:
 	void insertNodeAt(int i, int x);
 	void insertNodeAtBeginning(int x);
 	void printList();
-	LinkedList();
+	LinkedList(int x);
 	virtual ~LinkedList();
 };
 
