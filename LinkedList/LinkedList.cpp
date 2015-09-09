@@ -2,17 +2,17 @@
 #include "LinkedList.h"
 #include <string.h>
 
-
 int main() {
-	std::string s = "123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456";
+	std::string s = "123456789";
+			//"123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456123456";
 	LinkedList *l = new LinkedList(s.at(0) - '0');
-	for(int i = 1; i < s.length(); i++) {
+	for (int i = 1; i < s.length(); i++) {
 		l->createNewNodeAtEnd(s.at(i) - '0');
 	}
+	l->swapNodes(4, 5);
 	l->printList();
 	return 0;
 }
-
 
 /*
  * Insert node at index 'i'.
@@ -20,7 +20,7 @@ int main() {
  * Inserting a node at index 1 would mean it pushes the node at index 1 to index 2.
  */
 void LinkedList::insertNodeAt(int i, int x) {
-	if(i == 0) {
+	if (i == 0) {
 		insertNodeAtBeginning(x);
 		return;
 	}
@@ -45,7 +45,6 @@ void LinkedList::insertNodeAtBeginning(int x) {
 	root = temp;
 }
 
-
 void LinkedList::createNewNodeAtEnd(int i) {
 	end->next = new node;  // Creates a node at the end of the list
 	end = end->next; // Points to that node
@@ -58,7 +57,7 @@ void LinkedList::printList() {
 	//looping function to the end
 	if (conductor != 0) {
 		while (conductor->next != 0) {
-			std::cout << conductor-> x << "\n";
+			std::cout << conductor->x << "\n";
 
 			//goto next item
 			conductor = conductor->next;
@@ -67,6 +66,40 @@ void LinkedList::printList() {
 	}
 }
 
+void LinkedList::swapNodes(int i, int j) {
+	//if indexes are the same, return
+	if(i == j) {
+		return;
+	}
+	conductor = root;
+	node *conductor2 = root;
+	node *temp = new node();
+	if (conductor != 0) {
+		while (conductor->next != 0 && i > 1) {
+			i--;
+			//goto next item
+			conductor = conductor->next;
+		}
+	}
+	if (conductor2 != 0) {
+		while (conductor2->next != 0 && j > 1) {
+			j--;
+			//goto next item
+			conductor2 = conductor2->next;
+		}
+	}
+	//swap references to the switch nodes
+	temp->next = conductor->next;
+	conductor->next = conductor2->next;
+	conductor2->next = temp->next;
+
+	//go to the actual nodes and swap references too
+	conductor = conductor->next;
+	conductor2 = conductor2->next;
+	temp->next = conductor->next;
+	conductor->next = conductor2->next;
+	conductor2->next = temp->next;
+}
 
 LinkedList::LinkedList(int x) {
 	// TODO Auto-generated constructor stub

@@ -18,6 +18,7 @@ public:
 	node *conductor; //looping pointer
 	node *end; //end of list
 	void createNewNodeAtEnd(int i);
+	void swapNodes(int i, int j);
 	void insertNodeAt(int i, int x);
 	void insertNodeAtBeginning(int x);
 	void printList();
